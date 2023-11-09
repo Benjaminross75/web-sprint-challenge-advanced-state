@@ -1,6 +1,6 @@
 // ❗ You don't need to add extra reducers to achieve MVP
 import { combineReducers } from 'redux'
-import { MOVE_CLOCKWISE } from './action-types'
+import { MOVE_CLOCKWISE, MOVE_COUNTERCLOCKWISE } from './action-types'
 //import { moveClockwise } from './action-creators'
 const initialWheelState = 0
 function wheel(state = initialWheelState, action) {
@@ -10,6 +10,12 @@ function wheel(state = initialWheelState, action) {
         return 0
       } else{
         return state + 1
+      }
+    case MOVE_COUNTERCLOCKWISE:
+      if(state <= -5){
+        return 0
+      } else{
+        return state -1
       }
        default:
         return state
