@@ -1,7 +1,7 @@
 import React from 'react'
 import { combineReducers } from 'redux'
 import { moveClockwise } from '../state/action-creators';
-import { Connect } from 'react-redux';
+import { connect } from 'react-redux';
 
  function Wheel(props) {
   const {moveClockwise, initialWheelState} = props
