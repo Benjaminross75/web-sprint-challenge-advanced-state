@@ -34,4 +34,4 @@ const mapStateToProps = state =>{
     initialWheelState: state
   }
 }
-export default Connect(mapStateToProps,{moveClockwise})(Wheel)
+export default connect(mapStateToProps,{moveClockwise})(Wheel)
