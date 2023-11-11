@@ -14,11 +14,17 @@ import {connect, useDispatch} from 'react-redux';
   const initialState = false;
   const [selected1, setSelected1] = useState(initialState);
   const [selected2, setSelected2] = useState(initialState);
+  const [disabled, setDisabled] = useState(true)
 
   const clear = () =>{
     setSelected1(initialState);
-    setSelected2(initialState)
+    setSelected2(initialState);
+    setDisabled(true)
   };
+
+  const enableButton = () =>{
+    setDisabled(false)
+  }
 
   const handleSelectedAnswer = (answerId) =>{
   dispatch({type:'SET_SELECTED_ANSWER', payload: answerId});
@@ -33,6 +39,7 @@ import {connect, useDispatch} from 'react-redux';
       setSelected1(false);
       setSelected2(false)
      }
+   enableButton()
   }
 
   const handleSubmit  = () =>{
@@ -70,7 +77,7 @@ import {connect, useDispatch} from 'react-redux';
               </div>
             </div>
 
-            <button onClick={handleSubmit} id="submitAnswerBtn">Submit answer</button>
+            <button onClick={handleSubmit}  id="submitAnswerBtn" disabled={disabled}>Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
