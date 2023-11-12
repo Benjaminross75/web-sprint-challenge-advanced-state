@@ -31,7 +31,7 @@ function Quiz(props) {
      if(!quiz){fetchQuiz()}
   }, [selectedAnswer, selected1, selected2]);
   const isSelectedAnswer = !selectedAnswer
-  const initailState = false
+ const initailState = false
   // const [selected1, setSelected1] = useState(initailState)
   // const [selected2, setSelected2] = useState(initailState)
 
