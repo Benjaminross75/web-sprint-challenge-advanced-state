@@ -8,6 +8,7 @@ function Quiz(props) {
 
   const [selected1, setSelected1] = useState(false);
   const [selected2, setSelected2] = useState(false);
+  const [disabled, setDisabled] = useState(true)
 
   useEffect(()=>{
     //const savedState = JSON.parse(localStorage.getItem('quizState'));
@@ -37,7 +38,12 @@ function Quiz(props) {
   const clear = () =>{
     setSelected1(initailState)
     setSelected2(initailState)
+    setDisabled(true)
   }
+  const enableButton = () =>{
+         setDisabled(false);
+
+      }
 
 
   const handleSelectedAnswer = (answerId) =>{
@@ -54,7 +60,7 @@ function Quiz(props) {
     //   setSelected1(false);
     //   setSelected2(false);
     // }
-
+    enableButton()
    }
 
    const handleSubmit = (e) =>{
@@ -97,7 +103,7 @@ function Quiz(props) {
               </div>
             </div>
 
-            <button onClick={handleSubmit}id="submitAnswerBtn">Submit answer</button>
+            <button onClick={handleSubmit}id="submitAnswerBtn" disabled={disabled}>Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
