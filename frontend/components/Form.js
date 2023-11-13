@@ -1,9 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { inputChange, resetForm, postAnswer,postQuiz } from '../state/action-creators';
+import { connect, useDispatch } from 'react-redux'
+import { inputChange, resetForm, postAnswer,postQuiz,setMessage } from '../state/action-creators';
 
 export function Form(props) {
-  const {form, inputChange,resetForm,postAnswer,postQuiz} = props;
+  const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
+  const dispatch = useDispatch()
   const onChange = evt => {
 
     const {id, value} = evt.target
@@ -43,15 +44,15 @@ export function Form(props) {
 
 
    postQuiz(quizData)
-
+   dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
   }
 
   return (
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
-      <input value={form.newQuestion} onChange={onChange} maxLength={50} onChange={onChange} id="newQuestion" placeholder="Enter question" />
-      <input value={form.newTrueAnswer} onChange={onChange} maxLength={50} onChange={onChange} id="newTrueAnswer" placeholder="Enter true answer" />
-      <input value={form.newFalseAnswer} onChange={onChange} maxLength={50} onChange={onChange} id="newFalseAnswer" placeholder="Enter false answer" />
+      <input value={form.newQuestion} onChange={onChange} maxLength={50}  id="newQuestion" placeholder="Enter question" />
+      <input value={form.newTrueAnswer} onChange={onChange} maxLength={50}  id="newTrueAnswer" placeholder="Enter true answer" />
+      <input value={form.newFalseAnswer} onChange={onChange} maxLength={50}  id="newFalseAnswer" placeholder="Enter false answer" />
       <button id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )
@@ -64,4 +65,4 @@ export function Form(props) {
 
 
 
-export default connect(mapStateToProps,{inputChange,resetForm,postAnswer,postQuiz})(Form)
+export default connect(mapStateToProps,{inputChange,resetForm,postAnswer,postQuiz,setMessage})(Form)
