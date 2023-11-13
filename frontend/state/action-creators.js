@@ -42,14 +42,14 @@ export function fetchQuiz() {
 
   }
 }
-export function postAnswer(quizData) {
+export function postAnswer(answerData) {
   return function (dispatch) {
 
     // On successful POST:
      axios.post('http://localhost:9000/api/quiz/answer', answerData)
        .then(res =>{
         dispatch(inputChange(res.data))
-
+        
        })
        .catch(error => {
         console.error('Error posting answer:', error);
@@ -64,13 +64,16 @@ export function postQuiz(quizData) {
   return function (dispatch) {
 
 
-    axios.post('http://localhost:9000/api/quiz/new', quizData)
+   return axios.post('http://localhost:9000/api/quiz/new', quizData)
     .then(res =>{
 
-        dispatch(inputChange(res.data))
-        console.log('res --->', JSON.stringify(res.data, null, 2))
-        dispatch(resetForm())
 
+      console.log('res postquiz --->', JSON.stringify(res.data, null, 2));
+        dispatch(inputChange(res.data))
+
+
+        dispatch(resetForm())
+        return res.data
     })
     .catch(error => {
       console.error('Error posting quiz:', error);

@@ -12,15 +12,38 @@ export function Form(props) {
 
   }
 
-  const onSubmit = evt => {
+  const onSubmit = async evt => {
    evt.preventDefault();
+
 
    const quizData = {
     question_text: form.newQuestion,
     true_answer_text: form.newTrueAnswer,
     false_answer_text: form.newFalseAnswer,
   };
+
+  const quizResponse = await postQuiz(quizData)
+  //console.log('quizResponseeeee --->', JSON.stringify(quizResponse, null, 2));
+  const quizId = quizResponse.quiz_id;
+
+  const answerId = quizResponse.answers[0].answer_id;
+
+  const answerData = {
+    quiz_id: quizId,
+    answer_id: answerId
+  }
+
+
+
+
+
+
+  postAnswer(answerData)
+
+
+
    postQuiz(quizData)
+
   }
 
   return (
