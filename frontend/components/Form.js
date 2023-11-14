@@ -61,7 +61,7 @@ export function Form(props) {
 
 
    //postQuiz(quizData)
-   dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
+   await dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
 
   }
 
