@@ -13,10 +13,10 @@ export function Form(props) {
   const dispatch = useDispatch()
   const [formEnabled, setFormEnabled] = useState(false);
 
-  // useEffect(()=>{
-     userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
 
-  // },[form])
+
+
+
 
 
   const onChange = evt => {
@@ -36,7 +36,7 @@ export function Form(props) {
     true_answer_text: form.newTrueAnswer,
     false_answer_text: form.newFalseAnswer,
   };
-  // userSchema.validate(form, { fail: false });
+
 
   const quizResponse = await postQuiz(quizData)
   //console.log('quizResponseeeee --->', JSON.stringify(quizResponse, null, 2));
@@ -62,7 +62,7 @@ export function Form(props) {
    dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
 
   }
-
+  userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
   return (
     <form id="form" onSubmit={onSubmit} >
       <h2>Create New Quiz</h2>
