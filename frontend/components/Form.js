@@ -16,7 +16,7 @@ export function Form(props) {
 
   useEffect(() => {
     userSchema.isValid(form).then(isValid => setFormEnabled(isValid));
-  }, [form, formEnabled]);
+  }, [form]);
 
 
 
@@ -29,7 +29,7 @@ export function Form(props) {
 
 
   }
-
+//test
   const onSubmit = async evt => {
    evt.preventDefault();
 
