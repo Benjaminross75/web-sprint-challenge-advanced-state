@@ -4,9 +4,9 @@ import { inputChange, resetForm, postAnswer,postQuiz,setMessage } from '../state
 import * as yup from 'yup'
 
 const userSchema = yup.object().shape({
-  newQuestion: yup.string().trim().required().min(1),
-  newTrueAnswer: yup.string().trim().required().min(1),
-  newFalseAnswer: yup.string().trim().required().min(1)
+  newQuestion: yup.string().trim().min(1),
+  newTrueAnswer: yup.string().trim().min(1),
+  newFalseAnswer: yup.string().trim().min(1)
 })
 export function Form(props) {
   const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
