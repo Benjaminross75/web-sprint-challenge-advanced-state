@@ -4,20 +4,21 @@ import { inputChange, resetForm, postAnswer,postQuiz,setMessage } from '../state
 import * as yup from 'yup'
 
 const userSchema = yup.object().shape({
-  newQuestion: yup.string().trim().min(1),
-  newTrueAnswer: yup.string().trim().min(1),
-  newFalseAnswer: yup.string().trim().min(1)
+  newQuestion: yup.string().trim().min(1).max(50),
+  newTrueAnswer: yup.string().trim().min(1).max(50),
+  newFalseAnswer: yup.string().trim().min(1).max(50)
 })
 export function Form(props) {
   const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
   const dispatch = useDispatch();
   const [formEnabled, setFormEnabled] = useState(false);
+  console.log(`THis is formEnabled -->${formEnabled}`)
+
 
 
   useEffect(() => {
     userSchema.isValid(form).then(isValid => setFormEnabled(isValid));
   }, [form]);
-
 
 
 
@@ -29,7 +30,7 @@ export function Form(props) {
 
 
   }
-//testing again
+
   const onSubmit = async evt => {
    evt.preventDefault();
 
