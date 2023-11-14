@@ -16,7 +16,7 @@ export function Form(props) {
 
   useEffect(()=>{
      userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
-   },[form])
+   },[form, setFormEnabled])
 
 
 
@@ -60,7 +60,7 @@ export function Form(props) {
 
 
 
-   postQuiz(quizData)
+   //postQuiz(quizData)
    dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
 
   }
