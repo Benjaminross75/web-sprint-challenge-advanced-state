@@ -10,10 +10,13 @@ const userSchema = yup.object().shape({
 })
 export function Form(props) {
   const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+  const [formEnabled, setFormEnabled] = useState(false);
 
 
+  useEffect(() => {
+    userSchema.isValid(form).then(isValid => setFormEnabled(isValid));
+  }, [form, setFormEnabled]);
 
 
 
@@ -70,7 +73,7 @@ export function Form(props) {
       <input value={form.newQuestion} onChange={onChange} maxLength={50}  id="newQuestion"  placeholder="Enter question" />
      <input value={form.newTrueAnswer} onChange={onChange} maxLength={50}  id="newTrueAnswer"  placeholder="Enter true answer" />
       <input value={form.newFalseAnswer} onChange={onChange} maxLength={50}  id="newFalseAnswer"  placeholder="Enter false answer" />
-      <button  id="submitNewQuizBtn">Submit new quiz</button>
+      <button disabled={!formEnabled} id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )
 }
