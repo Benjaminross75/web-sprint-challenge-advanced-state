@@ -16,7 +16,7 @@ export function Form(props) {
 
   useEffect(() => {
     userSchema.isValid(form).then(isValid => setFormEnabled(isValid));
-  }, [form, setFormEnabled]);
+  }, [form, formEnabled]);
 
 
 
