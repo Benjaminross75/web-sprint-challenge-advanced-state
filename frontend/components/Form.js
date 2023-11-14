@@ -14,7 +14,9 @@ export function Form(props) {
   const [formEnabled, setFormEnabled] = useState(false);
 
 
-
+  useEffect(()=>{
+     userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
+   },[form])
 
 
 
@@ -62,12 +64,13 @@ export function Form(props) {
    dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
 
   }
-  userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
+
+
   return (
     <form id="form" onSubmit={onSubmit} >
       <h2>Create New Quiz</h2>
       <input value={form.newQuestion} onChange={onChange} maxLength={50}  id="newQuestion"  placeholder="Enter question" />
-      <input value={form.newTrueAnswer} onChange={onChange} maxLength={50}  id="newTrueAnswer"  placeholder="Enter true answer" />
+     <input value={form.newTrueAnswer} onChange={onChange} maxLength={50}  id="newTrueAnswer"  placeholder="Enter true answer" />
       <input value={form.newFalseAnswer} onChange={onChange} maxLength={50}  id="newFalseAnswer"  placeholder="Enter false answer" />
       <button disabled={!formEnabled} id="submitNewQuizBtn">Submit new quiz</button>
     </form>
