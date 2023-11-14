@@ -36,7 +36,7 @@ export function Form(props) {
     true_answer_text: form.newTrueAnswer,
     false_answer_text: form.newFalseAnswer,
   };
-  await userSchema.validate(form, { fail: false });
+   userSchema.validate(form, { fail: false });
 
   const quizResponse = await postQuiz(quizData)
   //console.log('quizResponseeeee --->', JSON.stringify(quizResponse, null, 2));
@@ -60,6 +60,7 @@ export function Form(props) {
 
    postQuiz(quizData)
    dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
+
   }
 
   return (
