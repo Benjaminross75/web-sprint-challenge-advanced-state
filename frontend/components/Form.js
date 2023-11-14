@@ -36,7 +36,7 @@ export function Form(props) {
     true_answer_text: form.newTrueAnswer,
     false_answer_text: form.newFalseAnswer,
   };
-   userSchema.validate(form, { fail: false });
+  // userSchema.validate(form, { fail: false });
 
   const quizResponse = await postQuiz(quizData)
   //console.log('quizResponseeeee --->', JSON.stringify(quizResponse, null, 2));
