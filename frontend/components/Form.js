@@ -3,18 +3,18 @@ import { connect, useDispatch } from 'react-redux'
 import { inputChange, resetForm, postAnswer,postQuiz,setMessage } from '../state/action-creators';
 import * as yup from 'yup'
 
-// const userSchema = yup.object().shape({
-//   newQuestion: yup.string().trim().required().min(1),
-//   newTrueAnswer: yup.string().trim().required().min(1),
-//   newFalseAnswer: yup.string().trim().required().min(1)
-// })
+const userSchema = yup.object().shape({
+  newQuestion: yup.string().trim().required().min(1),
+  newTrueAnswer: yup.string().trim().required().min(1),
+  newFalseAnswer: yup.string().trim().required().min(1)
+})
 export function Form(props) {
   const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
   const dispatch = useDispatch()
   const [formEnabled, setFormEnabled] = useState(false);
 
   // useEffect(()=>{
-  //   userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
+     userSchema.isValid(form).then(isValid => setFormEnabled(isValid))
 
   // },[form])
 
