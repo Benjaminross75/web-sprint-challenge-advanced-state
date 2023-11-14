@@ -49,15 +49,13 @@ export function postAnswer(answerData) {
      axios.post('http://localhost:9000/api/quiz/answer', answerData)
        .then(res =>{
         dispatch(inputChange(res.data))
-        
+
        })
        .catch(error => {
         console.error('Error posting answer:', error);
 
       });
-    // - Dispatch an action to reset the selected answer state
-    // - Dispatch an action to set the server message to state
-    // - Dispatch the fetching of the next quiz
+  
   }
 }
 export function postQuiz(quizData) {

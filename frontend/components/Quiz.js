@@ -56,10 +56,7 @@ function Quiz(props) {
     } else if (answerId === quiz.answers[1].answer_id) {
       setSelected1(false);
       setSelected2(true);
-     }// else {
-    //   setSelected1(false);
-    //   setSelected2(false);
-    // }
+     }
     enableButton()
    }
 
