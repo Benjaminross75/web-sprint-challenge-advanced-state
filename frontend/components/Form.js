@@ -11,15 +11,16 @@ const userSchema = yup.object().shape({
 export function Form(props) {
   const {form, inputChange,resetForm,postAnswer,postQuiz,setMessage} = props;
   const dispatch = useDispatch();
-  const [formEnabled, setFormEnabled] = useState(false);
-  console.log(`THis is formEnabled -->${formEnabled}`)
+  //const [formEnabled, setFormEnabled] = useState(false);
 
 
 
-  useEffect(() => {
-    userSchema.isValid(form).then(isValid => setFormEnabled(isValid));
-  }, [form]);
 
+
+
+  // useEffect(() => {
+  //   userSchema.isValid(form).then(setFormEnabled);
+  // }, [form]);
 
 
 
@@ -46,7 +47,7 @@ export function Form(props) {
   //console.log('quizResponseeeee --->', JSON.stringify(quizResponse, null, 2));
   const quizId = quizResponse.quiz_id;
 
-  const answerId = quizResponse.answers[0].answer_id;
+  const answerId =quizResponse.answers[0].answer_id;
 
   const answerData = {
     quiz_id: quizId,
@@ -61,20 +62,22 @@ export function Form(props) {
   postAnswer(answerData)
 
 
-
-   //postQuiz(quizData)
     dispatch(setMessage(`Congrats: "${form.newQuestion}" is a great question!`));
 
   }
-
-
+  const submitDisabled = () =>{
+    if(form.newQuestion.trim() === '' || form.newTrueAnswer.trim() === '' || form.newFalseAnswer.trim() === ''){
+      return true
+    }
+  }
+  
   return (
     <form id="form" onSubmit={onSubmit} >
       <h2>Create New Quiz</h2>
       <input value={form.newQuestion} onChange={onChange} maxLength={50}  id="newQuestion"  placeholder="Enter question" />
      <input value={form.newTrueAnswer} onChange={onChange} maxLength={50}  id="newTrueAnswer"  placeholder="Enter true answer" />
       <input value={form.newFalseAnswer} onChange={onChange} maxLength={50}  id="newFalseAnswer"  placeholder="Enter false answer" />
-      <button disabled={!formEnabled} id="submitNewQuizBtn">Submit new quiz</button>
+      <button disabled={submitDisabled()} id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )
 }
@@ -87,3 +90,12 @@ export function Form(props) {
 
 
 export default connect(mapStateToProps,{inputChange,resetForm,postAnswer,postQuiz,setMessage})(Form)
+
+
+
+//<button id="submitNewQuizBtn">Submit new quiz</button>
+
+
+{/* <button disabled={!form.isValid || form.loading} id="submitNewQuizBtn">
+        {form.loading ? 'Submitting...' : 'Submit new quiz'}
+      </button> */}

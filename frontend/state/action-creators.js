@@ -49,13 +49,13 @@ export function postAnswer(answerData) {
      axios.post('http://localhost:9000/api/quiz/answer', answerData)
        .then(res =>{
         dispatch(inputChange(res.data))
-
+        dispatch(resetForm)
        })
        .catch(error => {
         console.error('Error posting answer:', error);
 
       });
-  
+
   }
 }
 export function postQuiz(quizData) {
@@ -68,10 +68,12 @@ export function postQuiz(quizData) {
 
       console.log('res postquiz --->', JSON.stringify(res.data, null, 2));
         dispatch(inputChange(res.data))
-
+      // console.log('res postquiz --->', JSON.stringify(res.data, null, 2));
+      // dispatch(inputChange({loading: false, ...res.data}))
 
         dispatch(resetForm())
         return res.data
+
     })
     .catch(error => {
       console.error('Error posting quiz:', error);
